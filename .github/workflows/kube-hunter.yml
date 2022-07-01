@@ -20,10 +20,11 @@ jobs:
          sudo cp minikube-linux-amd64 /usr/local/bin/minikube
          sudo chmod +x /usr/local/bin/minikube
          minikube version
-         curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
+         
     - name: Setup kubectl
       continue-on-error: true
       run: |
+         curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
          chmod +x kubectl
          sudo mv kubectl /usr/local/bin/
          #kubectl version -o yaml
@@ -33,11 +34,11 @@ jobs:
          echo "name of the pods: "
          kubectl get namespace default
          echo "Deploy the application"
-         kubectl create deployment my-nginx --image=nginx
-         kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
+         sudo kubectl create deployment my-nginx --image=nginx
+         sudo kubectl get deployments.apps my-nginx
+         sudo kubectl get deployments.apps my-nginx
+         sudo kubectl get deployments.apps my-nginx
+         sudo kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
