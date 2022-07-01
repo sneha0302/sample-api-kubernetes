@@ -54,7 +54,8 @@ jobs:
         git clone https://github.com/aquasecurity/kube-hunter.git
         cd ./kube-hunter
         pip install -r requirements.txt
-        python3 kube_hunter
+        python3 kube_hunter --interface
+        
         
          
   
