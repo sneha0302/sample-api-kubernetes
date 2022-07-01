@@ -55,7 +55,8 @@ jobs:
         cd ./kube-hunter
         pip install -r requirements.txt
         python3 kube_hunter --interface
-        python3 kube_hunter --cidr 10.0.0.0/24
+        python3 kube_hunter --pod
+        
         
         
          
