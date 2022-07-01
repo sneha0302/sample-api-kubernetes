@@ -32,28 +32,7 @@ jobs:
          kubectl cluster-info
          echo "name of the pods: "
          kubectl get namespace default
-         kubectl create namespace default
-        
-         kubectl get all --namespace default
-        
-         
-         kubectl get nodes 
-         kubectl get nodes 
-         kubectl get nodes 
-         kubectl get nodes 
-         kubectl get nodes 
-         kubectl get nodes 
-         kubectl get nodes 
-         kubectl get nodes 
-         kubectl get nodes 
-         kubectl get nodes 
-         kubectl get nodes 
-         kubectl get nodes 
-         kubectl get nodes 
-        
-    - name: Deploy application
-      continue-on-error: true
-      run: |
+         echo "Deploy the application"
          kubectl create deployment my-nginx --image=nginx
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
