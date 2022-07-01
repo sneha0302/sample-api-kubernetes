@@ -46,9 +46,19 @@ jobs:
          #curl http://192.168.49.2:31895
     - name: Run Kube-hunter
       continue-on-error: true
-      run: |     
+      # uses: actions/checkout@v2.4.2
+      # with:
+      #  Repository name with owner. For example, actions/checkout
+      #  repository:  https://github.com/aquasecurity/kube-hunter.git
+      run: |
+        git clone https://github.com/aquasecurity/kube-hunter.git
+        cd ./kube-hunter
+        pip install -r requirements.txt
+        python3 kube_hunter
+        
          
-         docker run -it --rm --network host aquasec/kube-hunter --interface
+  
+       
          
          
          
