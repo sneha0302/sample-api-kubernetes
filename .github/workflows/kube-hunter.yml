@@ -30,28 +30,45 @@ jobs:
          #kubectl version -o yaml
          minikube start --driver=docker
          minikube status
+         minikube status
+         minikube status
+         minikube status
+         minikube status
+         minikube status
+         minikube status
+         minikube status
+         minikube status
+         minikube status
+         minikube status
+         minikube status
+         minikube status
+         minikube status
+         minikube status
+         minikube status
+         minikube status
          kubectl cluster-info
          echo "name of the pods: "
          kubectl get namespace default
-         echo "Deploy the application"
-         sudo kubectl create deployment my-nginx --image=nginx
-         sudo kubectl get deployments.apps my-nginx
-         sudo kubectl get deployments.apps my-nginx
-         sudo kubectl get deployments.apps my-nginx
-         sudo kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
-         kubectl get deployments.apps my-nginx
+    - name: Deploy the application
+      continue-on-error: true
+      run: |
          
-         
+         kubectl create deployment my-nginx --image=nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
          kubectl get pods 
          kubectl get pods 
          kubectl get pods 
