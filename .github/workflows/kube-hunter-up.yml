@@ -10,21 +10,19 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v2.4.2
-      continue-on-error: true 
-    - name: Deploy to Kubernetes
-     # You may pin to the exact commit or the version.
-     # uses: Firehed/deploy-to-kubernetes-action@b651fe96d385988dd795880c81ddab4bca2b3228
-      uses: Firehed/deploy-to-kubernetes-action@v0.3.0
-      with:
-       # The Kubernetes Namespace that the Deployment is in. If omitted, the `--namespace` flag is not used and the default Kubernetes behavior will apply.
-
-       namespace:  default
-       # The Deployment to update.
-       deployment: my-nginx
-       # The name of the Container in the Deployment that will have its image updated.
-       container: nginx
-       # The image to deploy.
-       image: nginx
-       # The token to use for the Github API.Normally you will use `secrets.GITHUB_TOKEN`.
-       token: secrets.TOKEN
+      continue-on-error: true
+    - name: Minikube Github Action
+      # You may pin to the exact commit or the version.
+      # uses: hiberbee/github-action-minikube@335e78e64a486a63d4800c2dcf7f56da3ee50ca7
+      uses: hiberbee/github-action-minikube@1.7.0  
+    - name: debianmaster/kubectl
+      # You may pin to the exact commit or the version.
+      # uses: debianmaster/kubectl@5ab430d8e913901a842f058436e1e5bdf3a8d897
+      uses: debianmaster/kubectl@v0.5
+    - name: kubectl1 & helm1
+      # You may pin to the exact commit or the version.
+      # uses: youaredev123/kubectl_helm_action@fcd3469339d63cd80d7ec7067da70ac0c5db3945
+      uses: youaredev123/kubectl_helm_action@helm
+    
+      
     
