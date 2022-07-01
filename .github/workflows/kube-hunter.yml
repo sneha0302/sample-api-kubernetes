@@ -36,13 +36,17 @@ jobs:
       run: |
          kubectl create deployment my-nginx --image=nginx
          kubectl get deployments.apps my-nginx
-         kubectl get pods
+         export POD_STATUS=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.available}}{{"\n"}}{{end}}')
+         #if($POD_STATUS==0)
+         if $POD_STATUS==0; then kubectl get pods && POD_STATUS=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.available}}{{"\n"}}{{end}}') ; fi
+                 
     - name: Expose application
       continue-on-error: true
       run: |
+         
          kubectl expose deployment my-nginx --name=my-nginx-svc --type=NodePort --port=81
          kubectl get svc my-nginx-svc
-         #minikube service my-nginx-svc --url http://192.168.49.2:31895
+         #minikube service my-nginx-svc --url 
          #curl http://192.168.49.2:31895
     - name: Run Kube-hunter
       continue-on-error: true
