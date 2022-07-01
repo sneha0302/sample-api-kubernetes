@@ -42,7 +42,7 @@ jobs:
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
-         kubectl api-resource –namespace=true
+         kubectl api-resources –namespace=true
          kubectl get pods
          kubectl get pods
          kubectl get pods
