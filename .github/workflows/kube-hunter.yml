@@ -1,6 +1,6 @@
 name: Kubernetes Scan using kube-hunter
 on:
-  push:
+ # push:
   workflow_dispatch:
   
 jobs:
