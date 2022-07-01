@@ -24,13 +24,14 @@ jobs:
     - name: Setup kubectl
       continue-on-error: true
       run: |
-         sudochmod +x kubectl
+         sudo chmod +x kubectl
          sudo mv kubectl /usr/local/bin/
          #kubectl version -o yaml
-         sudo minikube start --driver=docker
-         sudo minikube status
-         sudo kubectl cluster-info
-         sudo kubectl get nodes
+         minikube start --driver=docker
+         minikube status
+         kubectl cluster-info
+         echo "name of the pods: "
+         kubectl get nodes --namespace=default
         
     - name: Deploy application
       continue-on-error: true
