@@ -34,7 +34,7 @@ jobs:
          kubectl expose deployment my-nginx --name=my-nginx-svc --type=NodePort --port=80
          kubectl get svc my-nginx-svc
          minikube service my-nginx-svc --url http://192.168.49.2:31895
-         curl http://192.168.49.2:31895
+         #curl http://192.168.49.2:31895
          docker run -it --rm --network host aquasec/kube-hunter --interface
          
          
