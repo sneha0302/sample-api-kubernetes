@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    
     - name: Set up minikube
       continue-on-error: true
       run: |
@@ -24,7 +25,7 @@ jobs:
          chmod +x kubectl
          sudo mv kubectl /usr/local/bin/
          #kubectl version -o yaml
-         minikube start --driver=docker
+         minikube start --addons=ingress --cpus=2 --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6g
          
          kubectl cluster-info
          kubectl get nodes
