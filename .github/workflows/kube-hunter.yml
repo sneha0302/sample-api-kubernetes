@@ -24,26 +24,32 @@ jobs:
     - name: Setup kubectl
       continue-on-error: true
       run: |
-         sudo chmod +x kubectl
+         chmod +x kubectl
          sudo mv kubectl /usr/local/bin/
          #kubectl version -o yaml
          minikube start --driver=docker
          minikube status
          kubectl cluster-info
          echo "name of the pods: "
-         kubectl get nodes --namespace=default
-         kubectl get nodes --namespace=default
-         kubectl get nodes --namespace=default
-         kubectl get nodes --namespace=default
-         kubectl get nodes --namespace=default
-         kubectl get nodes --namespace=default
-         kubectl get nodes --namespace=default
-         kubectl get nodes --namespace=default
-         kubectl get nodes --namespace=default
-         kubectl get nodes --namespace=default
-         kubectl get nodes --namespace=default
-         kubectl get nodes --namespace=default
-         kubectl get nodes --namespace=default
+         kubectl get namespace default
+         kubectl create namespace default
+        
+         kubectl get all --namespace default
+        
+         
+         kubectl get nodes 
+         kubectl get nodes 
+         kubectl get nodes 
+         kubectl get nodes 
+         kubectl get nodes 
+         kubectl get nodes 
+         kubectl get nodes 
+         kubectl get nodes 
+         kubectl get nodes 
+         kubectl get nodes 
+         kubectl get nodes 
+         kubectl get nodes 
+         kubectl get nodes 
         
     - name: Deploy application
       continue-on-error: true
@@ -66,12 +72,12 @@ jobs:
          kubectl get deployments.apps my-nginx
          
          
-         kubectl get pods --namespace=default
-         kubectl get pods --namespace=default
-         kubectl get pods --namespace=default
-         kubectl get pods --namespace=default
-         kubectl get pods --namespace=default
-         kubectl get pods --namespace=default
+         kubectl get pods 
+         kubectl get pods 
+         kubectl get pods 
+         kubectl get pods 
+         kubectl get pods 
+         kubectl get pods 
          
     - name: Expose application
       continue-on-error: true
