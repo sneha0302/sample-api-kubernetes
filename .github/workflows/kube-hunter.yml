@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v2.4.2
       continue-on-error: true
     
-    - name: Use Vulnerable kubernetes application
+    - name: Set up minikube
       continue-on-error: true
       run: |
          sudo apt install -y curl wget apt-transport-https
@@ -21,6 +21,9 @@ jobs:
          sudo chmod +x /usr/local/bin/minikube
          minikube version
          curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
+    - name: Setup kubectl
+      continue-on-error: true
+      run: |
          chmod +x kubectl
          sudo mv kubectl /usr/local/bin/
          #kubectl version -o yaml
@@ -28,13 +31,23 @@ jobs:
          minikube status
          kubectl cluster-info
          kubectl get nodes
+    - name: Deploy application
+      continue-on-error: true
+      run: |
          kubectl create deployment my-nginx --image=nginx
          kubectl get deployments.apps my-nginx
          kubectl get pods
-         kubectl expose deployment my-nginx --name=my-nginx-svc --type=NodePort --port=80
+    - name: Expose application
+      continue-on-error: true
+      run: |
+         kubectl expose deployment my-nginx --name=my-nginx-svc --type=NodePort --port=81
          kubectl get svc my-nginx-svc
-         minikube service my-nginx-svc --url http://192.168.49.2:31895
+         #minikube service my-nginx-svc --url http://192.168.49.2:31895
          #curl http://192.168.49.2:31895
+    - name: Run Kube-hunter
+      continue-on-error: true
+      run: |     
+         
          docker run -it --rm --network host aquasec/kube-hunter --interface
          
          
