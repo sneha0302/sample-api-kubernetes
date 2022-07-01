@@ -24,26 +24,37 @@ jobs:
     - name: Setup kubectl
       continue-on-error: true
       run: |
-         chmod +x kubectl
+         sudochmod +x kubectl
          sudo mv kubectl /usr/local/bin/
          #kubectl version -o yaml
-         minikube start --driver=docker
-         minikube status
-         kubectl cluster-info
-         kubectl get nodes
+         sudo minikube start --driver=docker
+         sudo minikube status
+         sudo kubectl cluster-info
+         sudo kubectl get nodes
         
     - name: Deploy application
       continue-on-error: true
       run: |
          kubectl create deployment my-nginx --image=nginx
+         kubectl config set-content --current --namespace=default
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
-         kubectl api-resources –namespace=true
-         kubectl get pods
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-nginx
+         
+         
+         kubectl get pods --namespace=default
          kubectl get pods
          kubectl get pods
          kubectl get pods
