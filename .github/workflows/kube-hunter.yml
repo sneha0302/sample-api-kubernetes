@@ -37,9 +37,16 @@ jobs:
          kubectl create deployment my-nginx --image=nginx
          kubectl get deployments.apps my-nginx
          export POD_STATUS=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.available}}{{"\n"}}{{end}}')
+         echo $POD_STATUS
          #if($POD_STATUS==0)
          if $POD_STATUS==0; then kubectl get pods && POD_STATUS=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.available}}{{"\n"}}{{end}}') ; fi
-                 
+         kubectl get pods
+         kubectl get pods
+         kubectl get pods
+         kubectl get pods
+         kubectl get pods
+         kubectl get pods
+         kubectl get pods
     - name: Expose application
       continue-on-error: true
       run: |
