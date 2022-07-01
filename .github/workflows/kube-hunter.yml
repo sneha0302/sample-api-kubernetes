@@ -32,12 +32,23 @@ jobs:
          kubectl cluster-info
          echo "name of the pods: "
          kubectl get nodes --namespace=default
+         kubectl get nodes --namespace=default
+         kubectl get nodes --namespace=default
+         kubectl get nodes --namespace=default
+         kubectl get nodes --namespace=default
+         kubectl get nodes --namespace=default
+         kubectl get nodes --namespace=default
+         kubectl get nodes --namespace=default
+         kubectl get nodes --namespace=default
+         kubectl get nodes --namespace=default
+         kubectl get nodes --namespace=default
+         kubectl get nodes --namespace=default
+         kubectl get nodes --namespace=default
         
     - name: Deploy application
       continue-on-error: true
       run: |
          kubectl create deployment my-nginx --image=nginx
-         kubectl config set-content --current --namespace=default
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
@@ -56,11 +67,11 @@ jobs:
          
          
          kubectl get pods --namespace=default
-         kubectl get pods
-         kubectl get pods
-         kubectl get pods
-         kubectl get pods
-         kubectl get pods
+         kubectl get pods --namespace=default
+         kubectl get pods --namespace=default
+         kubectl get pods --namespace=default
+         kubectl get pods --namespace=default
+         kubectl get pods --namespace=default
          
     - name: Expose application
       continue-on-error: true
