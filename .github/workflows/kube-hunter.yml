@@ -8,10 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: checkout
-      uses: actions/checkout@v2.4.2
-      continue-on-error: true
-    
     - name: Set up minikube
       continue-on-error: true
       run: |
@@ -29,24 +25,14 @@ jobs:
          sudo mv kubectl /usr/local/bin/
          #kubectl version -o yaml
          minikube start --driver=docker
-         minikube status
-         minikube status
-         minikube status
-         minikube status
-         minikube status
-         minikube status
-         minikube status
-         minikube status
-         minikube status
-         minikube status
-         minikube status
-         minikube status
-         minikube status
-         minikube status
-         minikube status
-         minikube status
-         minikube status
+         
          kubectl cluster-info
+         kubectl get nodes
+         kubectl get nodes
+         kubectl get nodes
+         kubectl get nodes
+         kubectl get nodes
+         kubectl get nodes
          echo "name of the pods: "
          kubectl get namespace default
     - name: Deploy the application
@@ -54,6 +40,7 @@ jobs:
       run: |
          
          kubectl create deployment my-nginx --image=nginx
+         kubectl describe deployment my-nginx
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
