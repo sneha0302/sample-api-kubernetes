@@ -44,6 +44,26 @@ jobs:
          kubectl get pods 
          sleep 20s 
          kubectl get pods 
+         sleep 20s 
+         kubectl get pods
+         sleep 20s
+         kubectl get pods
+         sleep 20s 
+         kubectl get pods
+         sleep 20s 
+         kubectl get pods
+         sleep 20s 
+         kubectl get pods
+         kubectl get pods
+         kubectl get pods
+         kubectl get pods
+         kubectl get pods
+         kubectl get pods
+         kubectl get pods
+         kubectl get pods
+         sleep 20s 
+         kubectl get pods
+         
          
     - name: Expose application
       continue-on-error: true
