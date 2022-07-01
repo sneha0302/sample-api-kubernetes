@@ -44,24 +44,7 @@ jobs:
          kubectl get pods 
          sleep 20s 
          kubectl get pods 
-         sleep 20s 
-         kubectl get pods
-         sleep 20s
-         kubectl get pods
-         sleep 20s 
-         kubectl get pods
-         sleep 20s 
-         kubectl get pods
-         sleep 20s 
-         kubectl get pods
-         kubectl get pods
-         kubectl get pods
-         kubectl get pods
-         kubectl get pods
-         kubectl get pods
-         kubectl get pods
-         kubectl get pods
-         sleep 20s 
+         sleep 15m
          kubectl get pods
          
          
