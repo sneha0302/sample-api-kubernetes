@@ -26,5 +26,5 @@ jobs:
        # The image to deploy.
        image: nginx
        # The token to use for the Github API.Normally you will use `secrets.GITHUB_TOKEN`.
-       token: secrets.GITHUB_TOKEN
+       token: secrets.TOKEN
     
