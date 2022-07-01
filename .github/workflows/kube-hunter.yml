@@ -42,17 +42,14 @@ jobs:
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
          kubectl get deployments.apps my-nginx
+         kubectl api-resource –namespace=true
          kubectl get pods
          kubectl get pods
          kubectl get pods
          kubectl get pods
          kubectl get pods
          kubectl get pods
-         export DEPLOY_STATUS=$(kubectl get deployments.apps my-nginx -o go-template --template '{{range .items}}{{.metadata.available}}{{"\n"}}{{end}}')
-         echo $DEPLOY_STATUS
-         #if($DEPLOY_STATUS==0)
-         if $DEPLOY_STATUS==0; then kubectl get pods && POD_STATUS=$(kubectl get deployments.apps my-nginx -o go-template --template '{{range .items}}{{.metadata.available}}{{"\n"}}{{end}}') ; fi
-         echo DEPLOY_STATUS
+         
     - name: Expose application
       continue-on-error: true
       run: |
