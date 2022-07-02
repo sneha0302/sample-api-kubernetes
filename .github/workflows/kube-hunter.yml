@@ -53,8 +53,8 @@ jobs:
     - name: Expose application
       continue-on-error: true
       run: |   
-        kubectl expose deployment my-dep --name=my-dep-svc --type=NodePort --port=9092
-        kubectl get svc my-dep-svc
+        kubectl expose deployment my-dep --name=my-dep1-svc --type=NodePort --port=9092
+        kubectl get svc my-dep1-svc
    
     - name: Run Kube-hunter
       continue-on-error: true
@@ -65,8 +65,8 @@ jobs:
         #pip install -r requirements.txt
         #python3 kube_hunter --interface
         #python3 kube_hunter --pod
-        docker run -it --rm --network host aquasec/kube-hunter --interface
-        docker run -it --rm --network host aquasec/kube-hunter --pod
+        docker run  --rm --network host aquasec/kube-hunter --interface
+        docker run  --rm --network host aquasec/kube-hunter --pod
         
         
         
