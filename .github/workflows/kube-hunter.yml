@@ -26,10 +26,7 @@ jobs:
          sudo mv kubectl /usr/local/bin/
          kubectl version -o yaml
          minikube start --addons=ingress --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6g
-         kubectl get po -A
-         kubectl -- get po -A
-         echo "Aliasing.."
-         alias kubectl="minikube kubectl --"
+
          echo "minikube commands.."
          miniKube  default-storageclass
          minikube  storage-provisioner
@@ -66,8 +63,8 @@ jobs:
       run: |   
         # kubectl expose deployment my-nginx --name=my-nginx-svc --type=NodePort --port=81
         # kubectl get svc my-nginx-svc
-        kubectl expose deployment my-dep --name=my-nginx-svc --type=NodePort --port=81
-        kubectl get svc my-nginx-svc
+        kubectl expose deployment my-dep --name=my-svc --type=NodePort --port=81
+        kubectl get svc my-svc
          
          #minikube service my-nginx-svc --url 
          #curl http://192.168.49.2:31895
