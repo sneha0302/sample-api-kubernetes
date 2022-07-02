@@ -46,7 +46,7 @@ jobs:
       continue-on-error: true
       run: |
         # kubectl create deployment my-nginx --image=nginx --replicas=3
-         kubectl create deployment my-dep --image=k8s.gcr.io/echoserver:1.4 --port=5701 --replicas=3
+         kubectl create deployment my-dep --image=nginx --port=5701 --replicas=3
         # kubectl describe deployment my-nginx
          kubectl describe deployment my-dep
          kubectl get pods --all-namespaces
