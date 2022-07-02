@@ -35,8 +35,8 @@ jobs:
     - name: Deploy the application
       continue-on-error: true
       run: |
-         
-         kubectl create deployment my-nginx --image=nginx
+        #kubectl create deployment my-nginx --image=nginx
+         kubectl create deployment my-nginx --image=alpine
          kubectl describe deployment my-nginx
          kubectl get pods 
          sleep 20s 
