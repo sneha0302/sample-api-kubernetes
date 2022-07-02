@@ -25,14 +25,7 @@ jobs:
          chmod +x kubectl
          sudo mv kubectl /usr/local/bin/
          kubectl version -o yaml
-         minikube start --addons=ingress --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6g
-
-         echo "minikube commands.."
-         miniKube  default-storageclass
-         minikube  storage-provisioner
-         minikube  dashboard
-         minikube volumesnapshots
-         minikube  addons list
+         minikube start --addons=ingress --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6
          
          kubectl cluster-info
          kubectl get nodes
@@ -42,15 +35,14 @@ jobs:
     - name: Deploy the application
       continue-on-error: true
       run: |
-        # kubectl create deployment my-nginx --image=nginx --replicas=3
-         kubectl create deployment my-dep --image=nginx --port=5701 --replicas=3
-        # kubectl describe deployment my-nginx
-         kubectl describe deployment my-dep
+         kubectl create deployment my-nginx --image=nginx --replicas=3      
+         kubectl describe deployment my-nginx
+   
          kubectl get pods --all-namespaces
          kubectl get pods 
          sleep 20s 
-        # kubectl get deployments.apps my-nginx
-         kubectl describe deployment my-dep
+         kubectl get deployments.apps my-nginx
+         
          kubectl get pods 
          sleep 20s 
          kubectl get pods 
@@ -61,11 +53,9 @@ jobs:
     - name: Expose application
       continue-on-error: true
       run: |   
-        # kubectl expose deployment my-nginx --name=my-nginx-svc --type=NodePort --port=81
-        # kubectl get svc my-nginx-svc
-        kubectl expose deployment my-dep --name=my-svc --type=NodePort --port=81
-        kubectl get svc my-svc
-         
+        kubectl expose deployment my-nginx --name=my-nginx-svc --type=NodePort --port=81
+        kubectl get svc my-nginx-svc
+   
          #minikube service my-nginx-svc --url 
          #curl http://192.168.49.2:31895
     - name: Run Kube-hunter
