@@ -1,0 +1,82 @@
+name: Kubernetes Scan using kube-hunter
+on:
+  push:
+  workflow_dispatch:
+  
+jobs:
+  Kubernetes-setup:
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    
+    - name: Set up minikube
+      continue-on-error: true
+      run: |
+         sudo apt install -y curl wget apt-transport-https
+         wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+         sudo cp minikube-linux-amd64 /usr/local/bin/minikube
+         sudo chmod +x /usr/local/bin/minikube
+         minikube version
+         
+    - name: Setup kubectl
+      continue-on-error: true
+      run: |
+         curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
+         chmod +x kubectl
+         sudo mv kubectl /usr/local/bin/
+         
+         minikube start --addons=ingress --cpus=2 --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6g
+         
+         kubectl cluster-info
+         kubectl get nodes
+         
+         echo "name of the pods: "
+         kubectl get namespace default
+ Kubernetes-security:
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: Deploy the application
+      continue-on-error: true
+      run: |
+         kubectl create deployment my-nginx --image=nginx --replicas=3      
+         kubectl describe deployment my-nginx
+   
+         kubectl get pods --all-namespaces
+         kubectl get pods 
+         sleep 20s 
+         kubectl get deployments.apps my-nginx
+         
+         kubectl get pods 
+         sleep 20s 
+         kubectl get pods 
+         sleep 15m
+         kubectl get pods
+         
+         
+    - name: Expose application
+      continue-on-error: true
+      run: |   
+        kubectl expose deployment my-nginx --name=my-nginx-svc --type=NodePort --port=9092
+        kubectl get svc my-nginx-svc
+   
+    - name: Run Kube-hunter
+      continue-on-error: true
+
+      run: |
+        git clone https://github.com/aquasecurity/kube-hunter.git
+        cd ./kube-hunter
+        pip install -r requirements.txt
+        python3 kube_hunter --interface
+        python3 kube_hunter --pod
+        
+        
+        
+         
+  
+       
+         
+         
+         
+         
+      
