@@ -26,7 +26,7 @@ jobs:
          sudo mv kubectl /usr/local/bin/
          
          #minikube start --addons=ingress --cpus=2 --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6g
-         minikube start 
+         minikube start --addons=ingress --install-addons=true
          kubectl cluster-info
          kubectl get nodes
          
