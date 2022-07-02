@@ -35,7 +35,7 @@ jobs:
     - name: Deploy the application
       continue-on-error: true
       run: |
-         kubectl create deployment my-dep --image=nginx --replicas=3      
+         #kubectl create deployment my-dep --image=nginx --replicas=3      
          kubectl describe deployment my-dep
    
          kubectl get pods --all-namespaces
@@ -61,7 +61,7 @@ jobs:
 
       run: |
         #git clone https://github.com/aquasecurity/kube-hunter.git
-        #cd ./kube-hunter
+        cd ./kube-hunter
         #pip install -r requirements.txt
         python3 kube_hunter --interface
         python3 kube_hunter --pod
