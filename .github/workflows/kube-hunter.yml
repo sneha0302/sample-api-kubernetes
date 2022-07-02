@@ -24,8 +24,13 @@ jobs:
          curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
          chmod +x kubectl
          sudo mv kubectl /usr/local/bin/
-         #kubectl version -o yaml
-         minikube start --cpus=2 --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6g
+         kubectl version -o yaml
+         minikube start --addons=ingress --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6g
+         kubectl get po -A
+         minikube kubectl -- get po -A
+         echo "Aliasing.."
+         alias kubectl="minikube kubectl --"
+         echo "minikube commands.."
          miniKube addons enable default-storageclass
          minikube addons enable storage-provisioner
          minikube addons enable dashboard
@@ -41,7 +46,7 @@ jobs:
       continue-on-error: true
       run: |
         # kubectl create deployment my-nginx --image=nginx --replicas=3
-         kubectl create deployment my-dep --image=nginx --port=5701 --replicas=3
+         kubectl create deployment my-dep --image=k8s.gcr.io/echoserver:1.4 --port=5701 --replicas=3
         # kubectl describe deployment my-nginx
          kubectl describe deployment my-dep
          kubectl get pods --all-namespaces
