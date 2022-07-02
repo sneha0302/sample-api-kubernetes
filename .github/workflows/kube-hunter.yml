@@ -26,7 +26,7 @@ jobs:
          #sudo mv kubectl /usr/local/bin/
          
          #minikube start --addons=ingress --cpus=2 --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6g
-         minikube start
+         minikube start 
          kubectl cluster-info
          kubectl get nodes
          
@@ -35,13 +35,13 @@ jobs:
     - name: Deploy the application
       continue-on-error: true
       run: |
-         kubectl create deployment my-nginx --image=nginx --replicas=3      
-         kubectl describe deployment my-nginx
+         kubectl create deployment my-dep --image=nginx --replicas=3      
+         kubectl describe deployment my-dep
    
          kubectl get pods --all-namespaces
          kubectl get pods 
          sleep 20s 
-         kubectl get deployments.apps my-nginx
+         kubectl get deployments.apps my-dep
          
          #kubectl get pods 
          #sleep 20s 
@@ -53,16 +53,16 @@ jobs:
     - name: Expose application
       continue-on-error: true
       run: |   
-        kubectl expose deployment my-nginx --name=my-nginx-svc --type=NodePort --port=9092
-        kubectl get svc my-nginx-svc
+        kubectl expose deployment my-dep --name=my-dep-svc --type=NodePort --port=9092
+        kubectl get svc my-dep-svc
    
     - name: Run Kube-hunter
       continue-on-error: true
 
       run: |
-        git clone https://github.com/aquasecurity/kube-hunter.git
-        cd ./kube-hunter
-        pip install -r requirements.txt
+        #git clone https://github.com/aquasecurity/kube-hunter.git
+        #cd ./kube-hunter
+        #pip install -r requirements.txt
         python3 kube_hunter --interface
         python3 kube_hunter --pod
         
