@@ -5,28 +5,28 @@ on:
   
 jobs:
   Kubernetes-security:
-    runs-on: self-hosted #ubuntu-21.10
+    runs-on: ubuntu-21.10
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     
     - name: Set up minikube
       continue-on-error: true
       run: |
-       #  sudo apt install -y curl wget apt-transport-https
-        # wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-         #sudo cp minikube-linux-amd64 /usr/local/bin/minikube
-         #sudo chmod +x /usr/local/bin/minikube
-         minikube version
+        sudo apt install -y curl wget apt-transport-https
+        wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+        sudo cp minikube-linux-amd64 /usr/local/bin/minikube
+        sudo chmod +x /usr/local/bin/minikube
+        minikube version
          
     - name: Setup kubectl
       continue-on-error: true
       run: |
-        # curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
-         #chmod +x kubectl
-         #sudo mv kubectl /usr/local/bin/
+         curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
+         chmod +x kubectl
+         sudo mv kubectl /usr/local/bin/
          
-         #minikube start --addons=ingress --cpus=2 --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6g
-         minikube start 
+         minikube start --addons=ingress --cpus=2 --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6g
+         #minikube start 
          kubectl cluster-info
          kubectl get nodes
          
@@ -35,7 +35,7 @@ jobs:
     - name: Deploy the application
       continue-on-error: true
       run: |
-         #kubectl create deployment my-dep --image=nginx --replicas=3      
+         kubectl create deployment my-dep --image=nginx --replicas=3      
          kubectl describe deployment my-dep
    
          kubectl get pods --all-namespaces
