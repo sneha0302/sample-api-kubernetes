@@ -24,7 +24,7 @@ jobs:
          curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl 
          chmod +x kubectl
          sudo mv kubectl /usr/local/bin/
-         kubectl version -o yaml
+         
          minikube start --addons=ingress --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6
          
          kubectl cluster-info
@@ -53,17 +53,12 @@ jobs:
     - name: Expose application
       continue-on-error: true
       run: |   
-        kubectl expose deployment my-nginx --name=my-nginx-svc --type=NodePort --port=81
+        kubectl expose deployment my-nginx --name=my-nginx-svc --type=NodePort --port=9092
         kubectl get svc my-nginx-svc
    
-         #minikube service my-nginx-svc --url 
-         #curl http://192.168.49.2:31895
     - name: Run Kube-hunter
       continue-on-error: true
-      # uses: actions/checkout@v2.4.2
-      # with:
-      #  Repository name with owner. For example, actions/checkout
-      #  repository:  https://github.com/aquasecurity/kube-hunter.git
+
       run: |
         git clone https://github.com/aquasecurity/kube-hunter.git
         cd ./kube-hunter
