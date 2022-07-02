@@ -27,14 +27,14 @@ jobs:
          kubectl version -o yaml
          minikube start --addons=ingress --cni=flannel --install-addons=true --kubernetes-version=stable --memory=6g
          kubectl get po -A
-         minikube kubectl -- get po -A
+         kubectl -- get po -A
          echo "Aliasing.."
          alias kubectl="minikube kubectl --"
          echo "minikube commands.."
-         miniKube addons enable default-storageclass
-         minikube addons enable storage-provisioner
-         minikube addons enable dashboard
-         minikube addons enable volumesnapshots
+         miniKube  default-storageclass
+         minikube  storage-provisioner
+         minikube  dashboard
+         minikube volumesnapshots
          minikube  addons list
          
          kubectl cluster-info
