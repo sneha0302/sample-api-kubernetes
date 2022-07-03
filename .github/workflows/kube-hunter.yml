@@ -60,29 +60,30 @@ jobs:
     - name: Expose application
       continue-on-error: true
       run: |  
-        curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-        chmod 700 get_helm.sh
-        ./get_helm.sh
-        git clone https://github.com/madhuakula/kubernetes-goat.git
-        cd kubernetes-goat
-        bash setup-kubernetes-goat.sh
-        kubectl get pods -w
+        #curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+        #chmod 700 get_helm.sh
+        #./get_helm.sh
+        #git clone https://github.com/madhuakula/kubernetes-goat.git
+        #cd kubernetes-goat
+        #bash setup-kubernetes-goat.sh
+        kubectl get pods
         
    
-    - name: Run Kube-hunter
+    - name: Run Kube-hunter & kubescape
       continue-on-error: true
 
       run: |
-        git clone https://github.com/aquasecurity/kube-hunter.git
-        cd ./kube-hunter
-        pip install -r requirements.txt
-        python3 kube_hunter --interface
-        python3 kube_hunter --pod 
-        python3 kube_hunter --cidr  10.99.0.0/24
+        #git clone https://github.com/aquasecurity/kube-hunter.git
+        #cd ./kube-hunter
+        #pip install -r requirements.txt
+        #python3 kube_hunter --interface
+        #python3 kube_hunter --pod 
+        #python3 kube_hunter --cidr  10.99.0.0/24
         #docker run  --rm --network host aquasec/kube-hunter --interface
         #docker run  --rm --network host aquasec/kube-hunter --pod
         docker run  --rm --network host aquasec/kube-hunter
-        
+        curl -s https://raw.githubusercontent.com/armosec/kubescape/master/install.sh | /bin/bash
+        kubescape scan --submit --enable-host-scan --verbose
         
         
          
