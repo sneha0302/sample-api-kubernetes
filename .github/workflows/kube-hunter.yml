@@ -73,13 +73,15 @@ jobs:
       continue-on-error: true
 
       run: |
-        #git clone https://github.com/aquasecurity/kube-hunter.git
-        #cd ./kube-hunter
-        #pip install -r requirements.txt
-        #python3 kube_hunter --interface
-        #python3 kube_hunter --pod
-        docker run  --rm --network host aquasec/kube-hunter --interface
-        docker run  --rm --network host aquasec/kube-hunter --pod
+        git clone https://github.com/aquasecurity/kube-hunter.git
+        cd ./kube-hunter
+        pip install -r requirements.txt
+        python3 kube_hunter --interface
+        python3 kube_hunter --pod 
+        python3 kube_hunter --cidr  10.99.0.0/24
+        #docker run  --rm --network host aquasec/kube-hunter --interface
+        #docker run  --rm --network host aquasec/kube-hunter --pod
+        docker run  --rm --network host aquasec/kube-hunter
         
         
         
