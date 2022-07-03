@@ -60,13 +60,13 @@ jobs:
     - name: Setting up vulnerable kubernetes-goat
       continue-on-error: true
       run: |  
-        curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-        chmod 700 get_helm.sh
-        ./get_helm.sh
-        git clone https://github.com/madhuakula/kubernetes-goat.git
-        cd kubernetes-goat
-        bash setup-kubernetes-goat.sh
-        kubectl get pods -w
+       # curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+       # chmod 700 get_helm.sh
+       # ./get_helm.sh
+       # git clone https://github.com/madhuakula/kubernetes-goat.git
+       # cd kubernetes-goat
+       # bash setup-kubernetes-goat.sh
+       # kubectl get pods -w
         
    
     - name: Run Kube-hunter & kubescape
@@ -84,7 +84,7 @@ jobs:
         #docker run  --rm --network host aquasec/kube-hunter
         curl -s https://raw.githubusercontent.com/armosec/kubescape/master/install.sh | /bin/bash
         kubescape scan --submit --enable-host-scan --verbose
-        
+        kubectl logs kube-bench-my-dep
         
          
   
