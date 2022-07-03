@@ -85,7 +85,7 @@ jobs:
         curl -s https://raw.githubusercontent.com/armosec/kubescape/master/install.sh | /bin/bash
         kubescape scan --submit --enable-host-scan --verbose
         git clone https://github.com/aquasecurity/kube-bench.git
-        cd kubebench
+        cd kube-bench
         kubectl apply -f job.yaml
         kubectl get pods 
         kubectl get pods
