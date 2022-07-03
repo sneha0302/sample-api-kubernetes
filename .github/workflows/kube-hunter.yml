@@ -88,8 +88,11 @@ jobs:
         cd kube-bench
         kubectl apply -f job.yaml
         kubectl get pods 
-        kubectl get pods
-        kubectl logs kube-bench-j76s9
+        kubectl get pods -w
+        export POD_NAME=$(kubectl get pods -o=name | grep kube-bench | sed "s/^.\{4\}//")
+        echo $POD_NAME
+
+        kubectl logs $POD_NAME
 
         
          
