@@ -55,6 +55,18 @@ jobs:
       run: |   
         kubectl expose deployment my-dep --name=my-dep1-svc --type=NodePort --port=9092
         kubectl get svc my-dep1-svc
+        
+    
+    - name: Expose application
+      continue-on-error: true
+      run: |  
+        curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+        chmod 700 get_helm.sh
+        ./get_helm.sh
+        git clone https://github.com/madhuakula/kubernetes-goat.git
+        cd kubernetes-goat
+        bash setup-kubernetes-goat.sh
+        
    
     - name: Run Kube-hunter
       continue-on-error: true
