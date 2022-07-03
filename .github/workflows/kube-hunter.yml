@@ -69,7 +69,7 @@ jobs:
        # kubectl get pods -w
         
    
-    - name: Run Kube-hunter & kubescape
+    - name: Run Kube-bench & kubescape
       continue-on-error: true
 
       run: |
@@ -84,7 +84,13 @@ jobs:
         #docker run  --rm --network host aquasec/kube-hunter
         curl -s https://raw.githubusercontent.com/armosec/kubescape/master/install.sh | /bin/bash
         kubescape scan --submit --enable-host-scan --verbose
-        kubectl logs kube-bench-my-dep
+        git clone https://github.com/aquasecurity/kube-bench.git
+        cd kubebench
+        kubectl apply -f job.yaml
+        kubectl get pods 
+        kubectl get pods
+        kubectl logs kube-bench-j76s9
+
         
          
   
