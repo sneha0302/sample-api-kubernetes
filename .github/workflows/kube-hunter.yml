@@ -66,6 +66,7 @@ jobs:
         git clone https://github.com/madhuakula/kubernetes-goat.git
         cd kubernetes-goat
         bash setup-kubernetes-goat.sh
+        kubectl get pods -w
         
    
     - name: Run Kube-hunter
